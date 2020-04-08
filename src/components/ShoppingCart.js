@@ -30,7 +30,7 @@ const ShoppingCart = () => {
 	}
 	function showMessage(){
 		const cartTotal = getCartTotal();
-		if(cartTotal == 0){
+		if(cartTotal === 0){
 			showNotification("Your Cart!","Please add Items to cart first", "warning", 1000);
 		}
 		else{
