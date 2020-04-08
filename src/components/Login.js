@@ -14,6 +14,7 @@ export default function Login(props) {
 
 	function handleSubmit(event) {
 		if(password === 'admin'){
+			props.setUserLoggedIn(true);
 			store.addNotification({
 				title: "Successful login!",
 				message: "Welcome to Infa-commerce",

@@ -8,41 +8,17 @@ import Navigation from './components/Navigation';
 import ProductGrid from './components/ProductGrid';
 import ShoppingCart from './components/ShoppingCart';
 import Login from './components/Login';
-import Product from './components/Product';
-
-function LoginControl(props){
-	return (
-		<div>
-		  {
-		  	props.loggedIn == "false" &&
-			<Login />
-		  }
-		  {
-			props.loggedIn == "true" &&
-			<div>
-				
-				<div className="App">
-					<Navigation />
-					<Route exact path="/" component={ProductGrid} />
-					<Route exact path="/cart" component={ShoppingCart} />
-
-				</div>
-			</div>
-		  }
-		</div>
-	);
-
-}
 
 
 function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
-	const [userName, setUserName] = useState("");
-  	const [password, setPassword] = useState("");
+	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+	
 
 	const addItem = item => {
-		setCart([...cart, item]);
+		// todo: for loop and check for key and then update qty
+		setCart([...cart, {...item,quantity:1}]);
 		showNotification("Success!", "Item added", "success");
 	};
 
@@ -65,7 +41,6 @@ function App() {
 			dismiss: {
 				duration: 1000,
 				onScreen: true,
-				pauseOnHover: true
 			}
 		});
 	}
@@ -74,7 +49,21 @@ function App() {
 	return (
 		<ProductContext.Provider value={{ products, addItem }}>
 			<CartContext.Provider value={{ cart, removeItem }}>
-				<LoginControl loggedIn = "true"/>
+				{
+					isUserLoggedIn == false &&
+					<Login isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} />
+				}
+				{
+					isUserLoggedIn == true &&
+					<div>
+						
+						<div className="App">
+							<Navigation />
+							<Route exact path="/" component={ProductGrid} />
+							<Route exact path="/cart" component={ShoppingCart} />
+						</div>
+					</div>
+				}
 		 	</CartContext.Provider>
 		</ProductContext.Provider>
 	);

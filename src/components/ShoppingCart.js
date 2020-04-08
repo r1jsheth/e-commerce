@@ -3,6 +3,7 @@ import { CartContext } from '../contexts/CartContext';
 import { store } from 'react-notifications-component';
 import Item from './ShoppingCartItem';
 
+
 const ShoppingCart = () => {
 	const { cart, removeItem } = useContext(CartContext);
 
@@ -24,7 +25,6 @@ const ShoppingCart = () => {
 			dismiss: {
 				duration: timeout,
 				onScreen: true,
-				pauseOnHover: true
 			}
 		});
 	}
@@ -47,7 +47,7 @@ const ShoppingCart = () => {
 
 				<div className="shopping-cart__checkout">
 					<p>Total: ₹{getCartTotal()}</p>
-					<button type="submit" onClick={showMessage()}>Checkout</button>
+					<button type="submit" onClick={showMessage}>Checkout</button>
 				</div>
 			</div>
 	);

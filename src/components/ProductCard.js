@@ -4,7 +4,7 @@ import history from '../history';
 const ProductCard = props => {
 	return (
 		<div className="product">
-			<div onClick={() => history.push('/Products')}><img src={props.product.image} alt={`${props.product.title} book`} /></div>
+			<div onClick={() => {history.push('/product')}}><img src={props.product.image} alt={`${props.product.title} book`} /></div>
 
 			<h1 className="title">{props.product.title}</h1>
 
