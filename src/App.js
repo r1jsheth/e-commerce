@@ -65,7 +65,7 @@ function App() {
 			const orderedItem = cart.filter(product => product.title === item.title)[0]
 			setCart([...currentCart, {...orderedItem, quantity: orderedItem.quantity + 1}])
 		}
-		showNotification("Success!", "Item added", "success");
+		showNotification("Success!", "Item: " + item.title + " added", "success");
 	};
 	
 	const removeItem = id => {
@@ -85,7 +85,7 @@ function App() {
 		}
 
 
-		showNotification("You Removed", "an Item", "danger");
+		showNotification("Item removed!", "Item: " + currentItem.title + " removed", "danger");
 	}
 
 
