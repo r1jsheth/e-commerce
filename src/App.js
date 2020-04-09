@@ -10,6 +10,7 @@ import ShoppingCart from './components/ShoppingCart';
 import Login from './components/Login';
 import Product from './components/Product';
 import { withRouter } from 'react-router-dom';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
   	}
 
 	const addItem = item => {
-		// todo add to local storage
+		// TODO: add to local storage
 		
 		if(cart.filter(product => product.title === item.title).length === 0){
 			setCart([...cart, {...item, quantity: 1}]);
@@ -69,23 +70,25 @@ function App() {
 	};
 	
 	const removeItem = id => {
-		// const newCart = cart.filter(item => item.id !== id);
-		// setCart(newCart);
-		
 		
 		// TODO: add to local storage
-		const currentItem = cart.filter(item => item.id === id)[0];
-		if(cart.filter(item => item.id === id)[0].quantity > 1){
-			const currentCart = cart.filter(product => product.id !== currentItem.id)
-			const tempObj = cart.filter(product => product.title === currentItem.title)[0]
-			setCart([...currentCart, {...tempObj, quantity: tempObj.quantity - 1}])
+		var idx = -1;
+		for(let i = 0 ; i < cart.length ; ++i){
+			if(cart[i].id === id){
+				idx = i;
+				break;
+			}
+		}
+		if(cart[idx].quantity > 1){
+			cart[idx] = {...cart[idx], quantity: cart[idx].quantity-1};
+			setCart([...cart]);
 		} 
 		else {
 			setCart(cart.filter(item => item.id !== id))
 		}
 
 
-		showNotification("Item removed!", "Item: " + currentItem.title + " removed", "danger");
+		showNotification("Item removed!", "Item: " + cart[idx].title + " removed", "danger");
 	}
 
 
@@ -110,19 +113,21 @@ function App() {
 		<ProductContext.Provider value={{ products, addItem }}>
 			<CartContext.Provider value={{ cart, removeItem }}>
 				{
+					// TODO Login CSS
 					isUserLoggedIn === false &&
 					<Login isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} />
 				}
 				{
 					isUserLoggedIn === true &&
 					<div>
-						
+						{/* TODO: user name and logout */}
 						<div className="App">
 							<Navigation />
 							<Route exact path="/" component={ProductGrid} />
 							<Route exact path="/cart" component={ShoppingCart} />
 							<Route exact path="/product" component={Product} />
 						</div>
+						<Footer/>
 					</div>
 				}
 		 	</CartContext.Provider>
@@ -130,4 +135,5 @@ function App() {
 	);
 }
 
+// TODO what is withRouter() function
 export default withRouter(App);
