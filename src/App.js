@@ -15,7 +15,7 @@ import Footer from './components/Footer';
 
 function App() {
 	const [products] = useState(data);
-	const [cart, setCart] = useState([]);
+	const [cart, setCart] = useLocalStorage('cart', []);
 	const [isUserLoggedIn, setUserLoggedIn] = useLocalStorage('isUserLoggedIn', false);
 	
 	function useLocalStorage(key, initialValue) {
@@ -113,7 +113,6 @@ function App() {
 		<ProductContext.Provider value={{ products, addItem }}>
 			<CartContext.Provider value={{ cart, removeItem }}>
 				{
-					// TODO Login CSS
 					isUserLoggedIn === false &&
 					<div>
 						<Navigation isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} cartLength = {cart.length}
