@@ -1,8 +1,13 @@
 .footer{
     background-color: green;
     color: white;
-	text-decoration: none;
-    padding: 30px 30px;
+    padding: 15px 50px;
     font: inherit;
-	font-size: 1.35em;
+    font-size: 1.35em;
+    width: 100%;
+    bottom:0px;
+    position: relative;
+    overflow: -moz-hidden-unscrollable;
 }
+
+/*TODO: Footer fixed CSS*/
