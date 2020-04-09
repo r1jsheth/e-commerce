@@ -1,20 +1,46 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { CartContext } from '../contexts/CartContext';
-import Footer from './Footer';
+import { store } from 'react-notifications-component';
 
-const Navigation = () => {
-	const { cart } = useContext(CartContext);
+const Navigation = (props) => {
+
+
+	function logOut(){
+		localStorage.setItem('isUsedLoggedIn', false);
+		props.setUserLoggedIn(false);
+		showNotification("Logged Out!", "Logged Out!", "success");
+
+	}
+
+	function showNotification(title, msg, type){
+		store.addNotification({
+			title: title,
+			message: msg,
+			type: type,
+			insert: "top",
+			container: "top-center",
+			animationIn: ["animated", "fadeIn"],
+			animationOut: ["animated", "fadeOut"],
+			dismiss: {
+				duration: 1000,
+				onScreen: true,
+			}
+		});
+	}
+
 
 	return (
-		<div>
-			<div className="navigation">
-				<NavLink to="/">Infa-Commerce</NavLink>
-				<NavLink to="/">Products</NavLink>
+		<div className="navigation">
+			<NavLink to="/">Infa-Commerce</NavLink>
+			{	props.isVisible === "true" && <NavLink to="/">Products</NavLink> }
+			{
+				props.isVisible === "true" &&
 				<NavLink to="/cart" className="cartNavbar" >
-					Cart <span>{cart.length}</span>
+					Cart <span>{props.cartLength}</span>
 				</NavLink>
-			</div>
+			}
+			{	props.isVisible === "true" && <NavLink to="/" className="logOut" onClick={logOut}>Log Out</NavLink> }
+
 		</div>
 	);
 };

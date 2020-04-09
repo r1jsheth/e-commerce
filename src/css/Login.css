@@ -1,10 +1,51 @@
 @media all and (min-width: 480px) {
-    .Login {
-      padding: 60px 0;
-    }
-  
-    .Login form {
-      margin: 0 auto;
-      max-width: 320px;
-    }
-  }  
+	.Login {
+		padding: 60px 0;
+	}
+
+	.Login form {
+		padding-left: 50px 0;
+		margin-left: 480px;
+		max-width: 320px;
+	}
+}
+
+form input[type=text]:focus,form input[type="password"]:focus {
+	border-color:cornflowerblue;
+}
+.Login button {
+	border-radius: 5px;
+	width: 320px;
+	border: 1px solid green;
+	padding: 15px;
+	background: transparent;
+	transition: 0.35s ease-in-out;
+	margin: 10px;
+	color: green;
+	margin-left: 0px;
+}
+.Login button:hover {
+	cursor: pointer;
+	background: green;
+	color: white;
+}
+
+
+
+form input {
+	margin:15px 0;
+	padding:15px 10px;
+	width:100%;
+	outline:none;
+	border:1px solid #bbb;
+	border-radius:20px;
+	display:inline-block;
+	-webkit-box-sizing:border-box;
+	   -moz-box-sizing:border-box;
+	        box-sizing:border-box;
+    -webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}

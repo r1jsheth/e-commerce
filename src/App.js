@@ -115,21 +115,26 @@ function App() {
 				{
 					// TODO Login CSS
 					isUserLoggedIn === false &&
-					<Login isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} />
+					<div>
+						<Navigation isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} cartLength = {cart.length}
+									isVisible = "false" />
+						<Login isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} />
+					</div>
 				}
 				{
 					isUserLoggedIn === true &&
 					<div>
-						{/* TODO: user name and logout */}
 						<div className="App">
-							<Navigation />
+							<Navigation isUserLoggedIn = {isUserLoggedIn} setUserLoggedIn = {setUserLoggedIn} cartLength = {cart.length}
+								isVisible = "true"
+							/>
 							<Route exact path="/" component={ProductGrid} />
 							<Route exact path="/cart" component={ShoppingCart} />
 							<Route exact path="/product" component={Product} />
 						</div>
-						<Footer/>
 					</div>
 				}
+				<Footer/>
 		 	</CartContext.Provider>
 		</ProductContext.Provider>
 	);

@@ -8,10 +8,6 @@ export default function Login(props) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	function validateForm() {
-		return email.length > 0 && password.length > 0;
-	}
-
 	function handleSubmit(event) {
 		if(password === 'admin'){
 			localStorage.setItem('isUsedLoggedIn', true);
@@ -54,26 +50,26 @@ export default function Login(props) {
 		<div className="Login">
 			<form onSubmit={handleSubmit}>
 				<FormGroup controlId="email" bsSize="large">
-					<h2>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 					<FormControl
 						autoFocus
 						type="text"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
-					/>
+						placeholder = "email"
+						/>
 				</FormGroup>
 				<FormGroup controlId="password" bsSize="large">
-					<h2>Password &nbsp;&nbsp;</h2>
 					<FormControl
 						value={password}
 						onChange={e => setPassword(e.target.value)}
 						type="password"
+						placeholder = "password"
 					/>
 				</FormGroup>
 				<br></br><br></br>
-				<Button block bsSize="large" disabled={!validateForm()} type="submit">
+				<button type="submit" className = "loginBtn">
 					Login
-				</Button>
+				</button>
 			</form>
 		</div>
 	);
