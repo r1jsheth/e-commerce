@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { ProductContext } from '../contexts/ProductContext';
 import ProductCard from './ProductCard';
+import data from '../data';
 
 const ProductGrid = () => {
-	const { products, addItem } = useContext(ProductContext);
+	const [ products ] = useState(data);
+	const { addItem } = useContext(ProductContext);
 	
 	return (
 		<div className="products-container">
