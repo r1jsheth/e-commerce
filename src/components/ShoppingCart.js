@@ -34,7 +34,7 @@ const ShoppingCart = () => {
 			showNotification("Your Cart!","Please add Items to cart first", "warning", 1000);
 		}
 		else{
-			showNotification("Order placed!","You just placed order, bill is ₹ "+ cartTotal, "success", 1000);
+			showNotification("Order placed!","You just placed order, bill is ₹ " + cartTotal + "/-", "success", 1000);
 		}
 	}
 
@@ -46,7 +46,7 @@ const ShoppingCart = () => {
 				))}
 
 				<div className="shopping-cart__checkout">
-					<p>Total: ₹{getCartTotal()}</p>
+					<p>Total: ₹{getCartTotal()}/-</p>
 					<button type="submit" onClick={showMessage}>Checkout</button>
 				</div>
 		</div>

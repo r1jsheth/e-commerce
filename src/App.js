@@ -22,56 +22,44 @@ function App() {
 		// State to store our value
 		// Pass initial state function to useState so logic is only executed once
 		const [storedValue, setStoredValue] = useState(() => {
-			try {
-				// Get from local storage by key
-				const item = window.localStorage.getItem(key);
-				// Parse stored json or if none return initialValue
-				return item ? JSON.parse(item) : initialValue;
-			} catch (error) {
-				// If error also return initialValue
-				console.log(error);
-				return initialValue;
-			}
-		}
-	);
+			
+			// Get from local storage by key
+			const item = localStorage.getItem(key);
+			// Parse stored json or if none return initialValue
+			return item ? JSON.parse(item) : initialValue;
+		
+		});
   
-	// Return a wrapped version of useState's setter function that ...
-	// ... persists the new value to localStorage.
-	const setValue = value => {
-	  try {
-		// Allow value to be a function so we have same API as useState
-		const valueToStore =
-		  value instanceof Function ? value(storedValue) : value;
-		// Save state
-		setStoredValue(valueToStore);
-		// Save to local storage
-		window.localStorage.setItem(key, JSON.stringify(valueToStore));
-	  } catch (error) {
-		// A more advanced implementation would handle the error case
-		console.log(error);
-	  }
-	};
-  
-	return [storedValue, setValue];
+		// Return a wrapped version of useState's setter function that ...
+		// ... persists the new value to localStorage.
+		const setValue = value => {
+			// Allow value to be a function so we have same API as useState
+			const valueToStore = value instanceof Function ? value(storedValue) : value;
+			// Save state
+			setStoredValue(valueToStore);
+			// Save to local storage
+			localStorage.setItem(key, JSON.stringify(valueToStore));
+		};
+	
+		return [storedValue, setValue];
   	}
 
 	const addItem = item => {
-		// TODO: add to local storage
 		
 		if(cart.filter(product => product.title === item.title).length === 0){
 			setCart([...cart, {...item, quantity: 1}]);
+			showNotification("Success!", "Item: " + item.title + " added", "success");
 		} 
 		else {
 			const currentCart = cart.filter(product => product.id !== item.id)
 			const orderedItem = cart.filter(product => product.title === item.title)[0]
 			setCart([...currentCart, {...orderedItem, quantity: orderedItem.quantity + 1}])
+			showNotification("Quantity Updated!", "Item: " + orderedItem.title + " has now " + orderedItem.quantity + " quantity", "success");
 		}
-		showNotification("Success!", "Item: " + item.title + " added", "success");
 	};
 	
 	const removeItem = id => {
 		
-		// TODO: add to local storage
 		var idx = -1;
 		for(let i = 0 ; i < cart.length ; ++i){
 			if(cart[i].id === id){
@@ -82,13 +70,14 @@ function App() {
 		if(cart[idx].quantity > 1){
 			cart[idx] = {...cart[idx], quantity: cart[idx].quantity-1};
 			setCart([...cart]);
+			showNotification("Quantity Updated!", "Item: " + cart[idx].title + " has now " + cart[idx].quantity + " quantity", "danger");
 		} 
 		else {
 			setCart(cart.filter(item => item.id !== id))
+			showNotification("Item removed!", "Item: " + cart[idx].title + " removed", "danger");
 		}
 
 
-		showNotification("Item removed!", "Item: " + cart[idx].title + " removed", "danger");
 	}
 
 
