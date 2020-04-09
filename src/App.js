@@ -127,6 +127,7 @@ function App() {
 							<Route exact path="/cart" component={ShoppingCart} />
 							<Route exact path="/product" component={Product} />
 						</div>
+						<Footer/>
 					</div>
 				}
 		 	</CartContext.Provider>

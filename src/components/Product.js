@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import '../css/Product.css';
 import { ProductContext } from '../contexts/ProductContext';
-import Footer from './Footer';
 
 
 const Product = (props) => {
@@ -35,7 +34,6 @@ const Product = (props) => {
 						</div>
 						</div>
 						</div>
-					<Footer/>
 				</div>
 
 

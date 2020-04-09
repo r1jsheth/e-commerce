@@ -5,8 +5,8 @@
     font: inherit;
     font-size: 1.35em;
     width: 100%;
-    bottom:0px;
-
+    bottom: 0;
+    position: relative;
 }
 
 /*TODO: Footer fixed CSS*/

@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
 import { store } from 'react-notifications-component';
 import Item from './ShoppingCartItem';
-import Footer from './Footer';
 
 
 const ShoppingCart = () => {
@@ -41,8 +40,7 @@ const ShoppingCart = () => {
 
 
 	return (
-		<div>
-			<div className="shopping-cart">
+		<div className="shopping-cart">
 				{cart.map(item => (
 					<Item key={item.id} {...item} removeItem={removeItem} />
 				))}
@@ -51,9 +49,7 @@ const ShoppingCart = () => {
 					<p>Total: ₹{getCartTotal()}</p>
 					<button type="submit" onClick={showMessage}>Checkout</button>
 				</div>
-			</div>
-				<Footer style={{bottom: 0, position: "absolute"}}/>
-			</div>
+		</div>
 	);
 };
 
