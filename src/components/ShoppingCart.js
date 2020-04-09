@@ -8,8 +8,8 @@ const ShoppingCart = () => {
 	const { cart, removeItem } = useContext(CartContext);
 
 	const getCartTotal = () => {
-		return cart.reduce((acc, value) => {
-			return acc + value.price;
+		return cart.reduce((acc, item) => {
+			return acc + item.price * item.quantity;
 		}, 0);
 	};
 

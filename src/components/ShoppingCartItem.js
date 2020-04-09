@@ -9,6 +9,7 @@ const Item = props => {
 			<div>
 				<h1>{props.title}</h1>
 				<p>₹ {props.price}</p>
+				<p>Quantity: {props.quantity}</p>
 				<button onClick={() => props.removeItem(props.id)}>Remove from cart</button>
 			</div>
 		</div>
