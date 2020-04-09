@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../contexts/ProductContext';
-
+import Footer from './Footer';
 import ProductCard from './ProductCard';
 
 const ProductGrid = () => {
 	const { products, addItem } = useContext(ProductContext);
 	
 	return (
+		<div>
 		<div className="products-container">
 			{products.map(product => (
 				<ProductCard
@@ -15,6 +16,8 @@ const ProductGrid = () => {
 					addItem={addItem}
 				/>
 			))}
+		</div>
+		<Footer/>
 		</div>
 	);
 };

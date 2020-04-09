@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import '../css/Product.css';
 import { ProductContext } from '../contexts/ProductContext';
+import Footer from './Footer';
 
 
 const Product = (props) => {
@@ -30,11 +31,11 @@ const Product = (props) => {
 		
 						<div className="product-price">
 							<span>₹ {product.price}/-</span>
-							<button className="cart-btn" onClick={() => props.addItem(props.product)}>Add to cart</button>
+							<button className="cart-btn" onClick = {() => { addItem(product) }}>Add to cart</button>
 						</div>
 						</div>
 						</div>
-
+					<Footer/>
 				</div>
 
 

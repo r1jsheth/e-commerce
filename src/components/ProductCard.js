@@ -2,15 +2,15 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
  
 const ProductCard = props => {
-	console.log(props);
 	let curProps = props.product;
     return (
         <div className="product">
 					<div onClick={() => { 
+						console.log(props);
 						props.history.push({
 							pathname: '/product',
 							state: curProps
-						})
+						});
 					} 
 					}>
 						<div><img src={props.product.image} alt={`${props.product.title} book`} /></div>
